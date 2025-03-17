@@ -1,0 +1,105 @@
+import React from 'react'
+import Header from './Header';
+import { useState,useRef } from 'react';
+import {  createUserWithEmailAndPassword,signInWithEmailAndPassword,updateProfile  } from "firebase/auth";
+import { auth } from '../utils/firebase';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../utils/userSlice';
+import { Validate } from '../utils/validate';
+
+
+const Login = () => {
+
+  const [isSignIn,setIsSignIn]=useState(true);
+  const [errorMessage,setErrorMessage]=useState(null);
+  const navigate=useNavigate();
+  const email=useRef(null);
+  const password=useRef(null);
+  const name=useRef(null);
+  const dispatch=useDispatch();
+
+   const handlevalidation=()=>{
+    const message = Validate(email.current.value,password.current.value);
+   setErrorMessage(message);
+   if(message) return;
+    
+   if(!isSignIn){
+    // const auth = getAuth();
+createUserWithEmailAndPassword
+(auth, email.current.value, password.current.value)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    updateProfile(user, {
+      displayName: name.current.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
+    }).then(() => {
+      // Profile updated!
+      // ...
+      const {uid,email,displayName}=auth.currentUser;
+
+dispatch(addUser({uid:uid,email:email,displayName:displayName}));
+    }).catch((error) => {
+      // An error occurred
+      // ...
+    });
+    navigate("/browse");
+    console.log(user);
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    
+    setErrorMessage("Already a user.");
+    // ..
+  });
+}
+else {
+  
+  signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    navigate("/browse");
+    const {uid,email,displayName}=auth.currentUser;
+
+dispatch(addUser({uid:uid,email:email,displayName:displayName}));
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessage("User not found")
+      });
+   }
+   }
+   const handleSign=()=>{
+    setIsSignIn(!isSignIn);
+    // setErrorMessage(null);           // when toggling between already a member and new to netflix ,error message text didnt remove
+   };
+   
+  return (
+    <>
+   <Header/>
+    <div className='relative'> 
+    <img src="https://assets.nflxext.com/ffe/siteui/vlv3/0cf2c109-3af1-4a9d-87d7-aecfac5fe881/web/IN-en-20250217-TRIFECTA-perspective_c3376e06-9aff-4657-aafb-91256a597b7c_large.jpg" alt='logo'/>
+    
+    <form onSubmit={(e)=>e.preventDefault()} className='p-12 bg-black  absolute bg-opacity-85 top-[220px] left-[500px] w-3/12 h-[510px]'>
+        {(!isSignIn)&&<input ref={name} type="text" placeholder='Name' className=' placeholder-gray-500 p-2 m-5 ml-1 w-full text-gray-800 font-semibold'></input>}
+        <input ref={email} type="text" placeholder='Email' className='p-2 m-5 ml-1 w-full font-semibold placeholder-gray-500 text-gray-800'></input>
+        <input ref={password} type="text" placeholder='password' className='p-2 m-5 ml-1 w-full placeholder-gray-500 font-semibold text-gray-800'></input>
+        <p className='my-2 px-2 text-red-700 font-bold'> {errorMessage}</p>
+        <button    className ='bg-red-800 p-4 m-4 font-semibold text-white py-2 my-6 ml-1 w-full h-12 rounded-md ' onClick={handlevalidation}>{isSignIn?"SIGN IN":"sign up"}</button>
+
+        <h3 className='py-12 text-white cursor-pointer' onClick={()=>{handleSign()}}>{isSignIn?"New to netflix? Sign up now":"Already a user? Sign IN"}</h3>
+        
+    </form>
+    {/* {isSignIn&&<div className='absolute  text-white font-bold top-[510px] right-[650px]'>Forgot password</div>} */}
+    </div>
+    </>
+  )
+}
+
+export default Login ;     
