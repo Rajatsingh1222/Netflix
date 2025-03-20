@@ -10,8 +10,10 @@ const Footer = () => {
         
       <div className='mt-[-310px] relative z-20'>
 
-        <MovieList  title={"Now Playing Movies"} Movies={movies.nowPlayingMovies} />
-        <MovieList  title={"Popular Movies"} Movies={movies.popularMovies} />
+        <MovieList  title={"Now Playing "} Movies={movies.nowPlayingMovies} />
+        <MovieList  title={"Top Rated"} Movies={movies.topRatedMovies} />
+        <MovieList  title={"Upcoming"} Movies={movies.upcomingMovies} />
+        <MovieList  title={"Popular"} Movies={movies.popularMovies} />
         
         </div>
         
