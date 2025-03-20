@@ -9,7 +9,7 @@ const Footer = () => {
     <div className=' bg-black mt-12 pb-12 '>
         
       <div className='mt-[-310px] relative z-20'>
-
+ 
         <MovieList  title={"Now Playing "} Movies={movies.nowPlayingMovies} />
         <MovieList  title={"Top Rated"} Movies={movies.topRatedMovies} />
         <MovieList  title={"Upcoming"} Movies={movies.upcomingMovies} />
