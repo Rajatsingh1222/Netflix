@@ -64,7 +64,7 @@ dispatch(addUser({uid:uid,email:email,displayName:displayName}));
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        setErrorMessage("User not found")
+        setErrorMessage("Invalid credential!")
       });
    }
    }
@@ -86,7 +86,7 @@ dispatch(addUser({uid:uid,email:email,displayName:displayName}));
         <p className='my-2 px-2 text-red-700 font-bold'> {errorMessage}</p>
         <button    className ='bg-red-800 p-4 m-4 font-semibold text-white py-2 my-6 ml-1 w-full h-12 rounded-md ' onClick={handlevalidation}>{isSignIn?"SIGN IN":"sign up"}</button>
 
-        <h3 className='py-12 text-white cursor-pointer' onClick={()=>{handleSign()}}>{isSignIn?"New to netflix? Sign up now":"Already a user? Sign IN"}</h3>
+        <div className='py-12 text-white'>{isSignIn?<div className='flex'><h5 className='pt-[2px] text-sm'>New to netflix?</h5><h3 onClick={()=>{handleSign()}} className=' text-white ml-2 cursor-pointer hover:underline'>SignUp Now</h3></div>:<div className='flex'><div className='text-sm mt-[2px]'>Already a user?</div><div onClick={()=>{handleSign()}} className='ml-1 cursor-pointer hover:underline'>Sign In</div></div>}  </div>       
         
     </form>
     {/* {isSignIn&&<div className='absolute  text-white font-bold top-[510px] right-[650px]'>Forgot password</div>} */}

@@ -1,23 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { options } from '../utils/constants';
-import Header from './Header';
 import MainMovie from './MainMovie';
 
 const MoviePage = () => {
-   const [details,Setdetails]=useState({})
+   const [details,SetDetails]=useState({})
+   const [cast,SetCast]=useState([])
    const {id}=useParams();
     const getDetails=async()=>{
     const data=await fetch('https://api.themoviedb.org/3/movie/'+id+'?language=en-US',options);
     const json= await data.json();
     console.log(json);
-    Setdetails(json);
+    SetDetails(json);
+    }
+    const {genres}=details;
+    const getCast=async()=>{
+      const data=await fetch('https://api.themoviedb.org/3/movie/'+id+'/credits?language=en-US', options)
+      const json=  await data.json();
+      SetCast(json.cast);
     }
     useEffect(()=>{
        getDetails();
+       getCast();
     },[])
-    const {genres}=details;
-    console.log(genres)
+    console.log(cast)
+    const actors=cast.filter(el=>el.known_for_department=="Acting")
+    console.log(cast)
   return (
     <>
     
@@ -32,7 +40,13 @@ const MoviePage = () => {
         {genres?.map((g)=><div className='text-red-700 mx-1 '>{g.name+","}</div>)}
         </div>
         <div className='text-white mx-12 mt-4 flex font-bold'>Rating-<div className='text-red-600'>{details.vote_average}</div></div>
+          <div className='text-white ml-12 mt-12 font-bold text-3xl'>Cast</div>
+        <div className='overflow-x-scroll'>
+          <div className='box   h-44 ml-12 mt-10 flex mb-12 text-white p-2'>
+          {cast.map((el)=>el.profile_path &&<img className='m-2 border border-white hover:scale-105 transition-all duration-300' alt="img" src={"https://image.tmdb.org/t/p/w780/"+el.profile_path}/>)}
+          </div>
 
+        </div>
     </div>
         
         
