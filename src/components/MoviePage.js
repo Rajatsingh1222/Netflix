@@ -39,7 +39,7 @@ const MoviePage = () => {
 
         {genres?.map((g)=><div className='text-red-700 mx-1 '>{g.name+","}</div>)}
         </div>
-        <div className='text-white mx-12 mt-4 flex font-bold'>Rating-<div className='text-red-600'>{details.vote_average}</div></div>
+        <div className='text-white mx-12 mt-4 flex font-bold'>Rating-<div className='text-red-600'>{details.vote_average}/10</div></div>
           <div className='text-white ml-12 mt-12 font-bold text-3xl'>Cast</div>
         <div className='overflow-x-scroll'>
           <div className='box   h-44 ml-12 mt-10 flex mb-12 text-white p-2'>
