@@ -6,9 +6,9 @@ const Footer = () => {
     const movies=useSelector(store=>store.movies)
     console.log(movies)
   return (
-    <div className=' bg-black mt-12 pb-12 '>
+    <div className=' bg-black  pb-6 md:pb-12 '>
         
-      <div className='mt-[-310px] relative z-20'>
+      <div className='mt-[-18px] md:mt-[-310px] ml-[2px] md:ml-[-20px] relative z-20'>
  
         <MovieList  title={"Now Playing "} Movies={movies.nowPlayingMovies} />
         <MovieList  title={"Top Rated"} Movies={movies.topRatedMovies} />
