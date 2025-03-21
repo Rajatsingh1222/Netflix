@@ -2,16 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { options } from '../utils/constants';
 import MainMovie from './MainMovie';
+import CastCard from './CastCard';
 
 const MoviePage = () => {
    const [details,SetDetails]=useState({})
    const [cast,SetCast]=useState([])
+   const [date,SetDate]=useState("")
    const {id}=useParams();
     const getDetails=async()=>{
     const data=await fetch('https://api.themoviedb.org/3/movie/'+id+'?language=en-US',options);
     const json= await data.json();
     console.log(json);
     SetDetails(json);
+    const year=json.release_date.slice(0,4);
+    SetDate(year);
     }
     const {genres}=details;
     const getCast=async()=>{
@@ -23,15 +27,16 @@ const MoviePage = () => {
        getDetails();
        getCast();
     },[])
-    console.log(cast)
+    // console.log(cast)
     const actors=cast.filter(el=>el.known_for_department=="Acting")
-    console.log(cast)
+    // console.log(cast)
   return (
     <>
     
     {/* <h1 className=' text-white bg-gradient-to-r from-black '>{details.original_title}</h1> */}
     <div className='absolute bg-black w-screen h-screen opacity-85 overflow-y-scroll' >
-        <h1 className=' text-white  text-4xl m-10'>{details.original_title}</h1>
+        <h1 className=' text-white  text-4xl ml-10 mt-10'>{details.original_title}</h1>
+        <h1 className=' text-red-600  text-xl ml-10 mt-1'>({date})</h1>
         <img className=' text-white  text-4xl  mt-6  w-40 h-60 border border-white p-2 m-10' alt="img" src={"https://image.tmdb.org/t/p/w780/"+details.poster_path+".jpg"}/>
           <h1 className='text-white ml-10 text-2xl'>Description</h1>  
         <p className=' text-white z-20 text-md  w-1/2 mx-10 m-2'>{details.overview}</p>
@@ -39,14 +44,17 @@ const MoviePage = () => {
 
         {genres?.map((g)=><div className='text-red-700 mx-1 '>{g.name+","}</div>)}
         </div>
-        <div className='text-white mx-12 mt-4 flex font-bold'>Rating-<div className='text-red-600'>{details.vote_average}/10</div></div>
+        <div className='text-white mx-12 mt-4 flex font-bold'>Rating-<div className='text-red-600'>{Math.floor((details.vote_average)*10)/10}/10</div></div>
           <div className='text-white ml-12 mt-12 font-bold text-3xl'>Cast</div>
-        <div className='overflow-x-scroll'>
-          <div className='box   h-44 ml-12 mt-10 flex mb-12 text-white p-2'>
-          {cast.map((el)=>el.profile_path &&<img className='m-2 border border-white hover:scale-105 transition-all duration-300' alt="img" src={"https://image.tmdb.org/t/p/w780/"+el.profile_path}/>)}
-          </div>
+      <div className='overflow-x-scroll  h-80  ml-12 mt-5 flex mb-12  text-white p-2'>
 
-        </div>
+      <div className='flex'>
+
+
+          {cast &&cast.map((el)=>el.profile_path && <CastCard  name={el.name} link={el.profile_path}/>)}
+      </div>
+    </div>
+
     </div>
         
         
