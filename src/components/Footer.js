@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <div className=' bg-black  pb-6 md:pb-12 '>
         
-      <div className='mt-[-18px] md:mt-[-310px] ml-[2px] md:ml-[-20px] relative z-20'>
+      <div className='mt-[-5px] pt-24 md:mt-[-310px] ml-[2px] md:ml-[-20px] relative z-20'>
  
         <MovieList  title={"Now Playing "} Movies={movies.nowPlayingMovies} />
         <MovieList  title={"Top Rated"} Movies={movies.topRatedMovies} />
