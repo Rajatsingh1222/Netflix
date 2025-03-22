@@ -35,18 +35,18 @@ const MoviePage = () => {
     
     {/* <h1 className=' text-white bg-gradient-to-r from-black '>{details.original_title}</h1> */}
     <div className='absolute bg-black w-screen h-screen opacity-85 overflow-y-scroll' >
-        <h1 className=' text-white  text-4xl ml-10 mt-10'>{details.original_title}</h1>
-        <h1 className=' text-red-600  text-xl ml-10 mt-1'>({date})</h1>
-        <img className=' text-white  text-4xl  mt-6  w-40 h-60 border border-white p-2 m-10' alt="img" src={"https://image.tmdb.org/t/p/w780/"+details.poster_path+".jpg"}/>
-          <h1 className='text-white ml-10 text-2xl'>Description</h1>  
-        <p className=' text-white z-20 text-md  w-1/2 mx-10 m-2'>{details.overview}</p>
-        <div className='flex px-12 text-white mt-12 font-bold'>Genres-
+        <h1 className=' text-white text-xl md:text-4xl ml-10 mt-10'>{details.original_title}</h1>
+        <h1 className=' text-red-600  text-sm md:text-xl ml-10 mt-1'>({date})</h1>
+        <img className='   mt-6 w-20 h-30 md:w-40 md:h-60 border border-white p-1 m-5 ml-10 md:p-2 md:m-10' alt="img" src={"https://image.tmdb.org/t/p/w780/"+details.poster_path+".jpg"}/>
+          <h1 className='text-white ml-10 text-lg md:text-2xl'>Description</h1>  
+        <p className=' text-white z-20 text-xs md:text-lg  w-1/2 mx-10 m-2'>{details.overview}</p>
+        <div className='flex flex-wrap pl-10 w-full md:pl-10 text-white mt-6 text-sm md:mt-12 font-bold'>
 
-        {genres?.map((g)=><div className='text-red-700 mx-1 '>{g.name+","}</div>)}
+        {genres?.map((g)=><div className= 'text-sm text-red-700 mx-0 -pl-4 '>{g.name+","}</div>)}
         </div>
-        <div className='text-white mx-12 mt-4 flex font-bold'>Rating-<div className='text-red-600'>{Math.floor((details.vote_average)*10)/10}/10</div></div>
-          <div className='text-white ml-12 mt-12 font-bold text-3xl'>Cast</div>
-      <div className='overflow-x-scroll  h-80  ml-12 mt-5 flex mb-12  text-white p-2'>
+        <div className='text-white  mx-10 md:mx-10 mt-4 text-sm flex font-bold'>Rating-<div className='text-red-600'>{Math.floor((details.vote_average)*10)/10}/10</div></div>
+          <div className='text-white ml-10 md:ml-12 mt-6 md:mt-12 font-bold md:text-3xl'>Cast</div>
+      <div className='overflow-x-scroll  h-80 ml-6 md:ml-12 mt-2 md:mt-5 flex   text-white p-2'>
 
       <div className='flex'>
 

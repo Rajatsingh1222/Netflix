@@ -6,7 +6,7 @@ const MainMovie = ({overview,title}) => {
 
     <h1 className='text-lg md:text-5xl md:mt-24'>{title}</h1>
     <p className=' w-2/3 md:w-1/3 mt-3 md:mt-8 text-xs md:text-2xl'>{overview}</p>
-    <div className='mt-3 md:mt-12'>
+    <div className='mt-6 md:mt-12'>
         <button className='bg-white text-black md:text-lg  w-20 h-8 md:w-36 md:h-12 md:p-2 md:font-bold rounded-md hover:bg-opacity-80 text-xs'>▶ play</button>
         <button className='bg-gray-500 text-white text:sm md:text-lg w-20 h-8 md:w-36 md:h-12 md:p-2 md:font-bold rounded-md ml-1 md:ml-3  hover:bg-opacity-80 text-xs'>More Info</button>
     </div>

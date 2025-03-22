@@ -5,9 +5,9 @@ const CastCard = ({name,link}) => {
   return (
     <>
         
-        <div className=' w-44 h-72 m-2 bg-black p-1'>
+        <div className=' w-24 h-32 md:w-44 md:h-72 m-2 bg-black p-1'>
 
-    <img className=' border h-56 w-44 border-white hover:scale-110 transition-all duration-300 ' alt="img" src={"https://image.tmdb.org/t/p/w780/"+link}/>
+    <img className=' border h-36 w-28 border-white hover:scale-110 transition-all duration-300 ' alt="img" src={"https://image.tmdb.org/t/p/w780/"+link}/>
     <div className='mt-3'>{name}</div>
         </div>
     </>
