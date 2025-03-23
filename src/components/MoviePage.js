@@ -38,7 +38,7 @@ const MoviePage = () => {
         <h1 className=' text-white text-xl md:text-4xl ml-10 mt-10'>{details.original_title}</h1>
         <h1 className=' text-red-600  text-sm md:text-xl ml-10 mt-1'>({date})</h1>
         <img className='   mt-6 w-20 h-30 md:w-40 md:h-60 border border-white p-1 m-5 ml-10 md:p-2 md:m-10' alt="img" src={"https://image.tmdb.org/t/p/w780/"+details.poster_path+".jpg"}/>
-          <h1 className='text-white ml-10 text-lg md:text-2xl'>Description</h1>  
+        <h1 className='text-white ml-10 text-lg md:text-2xl'>Description</h1>  
         <p className=' text-white z-20 text-xs md:text-lg  w-1/2 mx-10 m-2'>{details.overview}</p>
         <div className='flex flex-wrap pl-10 w-full md:pl-10 text-white mt-6 text-sm md:mt-12 font-bold'>
 
@@ -53,7 +53,7 @@ const MoviePage = () => {
 
           {cast &&cast.map((el)=>el.profile_path && <CastCard  name={el.name} link={el.profile_path}/>)}
       </div>
-    </div>
+      </div>
 
     </div>
         

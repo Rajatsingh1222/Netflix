@@ -1,5 +1,4 @@
 import React from 'react'
-// import { useParams, Link } from "react-router-dom";
 
 const MovieCard = ({path}) => {
   // console.log(path);

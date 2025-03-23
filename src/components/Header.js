@@ -62,9 +62,9 @@ return ()=>unSubscribe();
     
     {user && <div className='flex justify-start w-8 h-8 md:w-14 md:h-14'>
        <img  className='relative  right-5 top-2 md:right-10   md:top-5 rounded-md' src="https://occ-0-4409-3646.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABYPTk-lJwL8jeVZoJJUHDBCBKTOHvq52XpkgHAXGAI9tzk5eUGy373181Xuqtz727B_VDlO-MyIgxFGKFDKYryKJgLCfi9dWaQ.png?r=ab6"/>
-      {!box &&<div className='relative right-20 top-10 md:top-20 md:right-28  text-white font-bold cursor-pointer h-[15px] md:h-[30px]' onMouseEnter={set}  onMouseLeave={setf}      
+      {!box &&<div className='relative right-16 top-10 md:top-20 md:right-24  text-white font-bold cursor-pointer text-[10px] md:text-xs h-[15px] md:h-[30px]' onMouseEnter={set}  onMouseLeave={setf}      
       > Hey,{user.displayName}</div>}
-       {box && <div className='relative top-20 right-[110px] h-[80px] w-[180px] p-1 bg-opacity-65 mt-2 rounded-md text-white font-bold cursor-pointer bg-black px-3'  onMouseLeave={setf} ><div className='hover:text-pink-500 my-1'>{user.displayName}</div><hr></hr><div className='font-mono text-sm mt-2 hover:text-pink-500' onClick={handleSignOut}>SignOut</div></div>}
+       {box && <div className='relative  top-10 md:top-20 right-[60px] md:right-[110px] h-[60px] md:h-[70px] w-[50px] md:w-[180px] p-1  bg-opacity-65 mt-2 rounded-md text-white text-[8px] md:text-[15px] bg-black cursor-pointer  px-3'  onMouseLeave={setf} ><div className='hover:text-pink-500 my-1'>{user.displayName}</div><hr></hr><div className='font-mono text-[8px] md:text-[15px] mt-2 hover:text-pink-500' onClick={handleSignOut}>SignOut</div></div>}
     </div>}
   
 </div>
