@@ -4,6 +4,7 @@ import Login from './Login'
 import Browse from './Browse'
 import {RouterProvider} from "react-router-dom";
 import MoviePage from './MoviePage';
+import ForgotPage from './ForgotPage';
 
 
 const Body = () => {
@@ -20,6 +21,10 @@ const Body = () => {
         {
             path:"/browse/moviePage/:id",
             element:<MoviePage/>
+        },
+        {
+            path:"/forgotPage",
+            element:<ForgotPage/>
         },
     ]);
 

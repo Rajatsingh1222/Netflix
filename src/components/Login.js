@@ -6,18 +6,22 @@ import { auth } from '../utils/firebase';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
 import { Validate } from '../utils/validate';
+import { useNavigate } from 'react-router-dom';
+import ForgotPage from './ForgotPage';
 
 
 const Login = () => {
 
   const [isSignIn,setIsSignIn]=useState(true);
   const [show,SetShow]=useState(true);
+  const [fun,SetFun]=useState(false);
   const [text,SetText]=useState("Show");
   const [type,SetType]=useState("password");
   const [errorMessage,setErrorMessage]=useState(null);
   const email=useRef(null);
   const password=useRef(null);
   const name=useRef(null);
+  const navigate=useNavigate();
   const dispatch=useDispatch();
    const handlevalidation=()=>{
     const message = Validate(email.current?.value,password.current?.value,name?.current?.value);
@@ -90,6 +94,17 @@ dispatch(addUser({uid:uid,email:email,displayName:displayName}));
       show?SetText("Hide"):SetText("Show")
        SetShow(!show);
       }
+      const func=(name)=>{
+        if(password.current?.value)
+      SetFun(true);
+
+        else {
+          SetFun(false)
+        }
+      }
+      const forgotfun=()=>{
+        navigate('/forgotPage');
+      }
    
   return (
     <>
@@ -101,10 +116,11 @@ dispatch(addUser({uid:uid,email:email,displayName:displayName}));
         {(!isSignIn)&&<input ref={name} type="text" placeholder='Name' className='mb-1 ml-4 mt-6 placeholder-gray-500 p-1 md:p-2 md:m-5 md:ml-1 w-10/12 md:w-full rounded-sm text-gray-800 font-semibold text-sm'></input>}
         
         <input ref={email} type="text" placeholder='Email' className='mb-6 ml-4 mt-6 placeholder-gray-500 p-1 md:p-2 md:m-5 md:ml-1 w-10/12 md:w-full rounded-sm text-gray-800 font-semibold text-sm'></input>
-        <div className='text-black w-8 font-bold relative left-[230px] top-8 overflow-hidden cursor-pointer text-xs' onClick={()=>{handleShow()}}>{text}</div>
-        <input ref={password} type={type} placeholder='password' className='mb-4 ml-4 mt-1 md:mt-1 placeholder-gray-500 p-1 md:p-2 md:m-5 md:ml-1 w-10/12 md:w-full rounded-sm text-gray-800 font-semibold text-sm'></input>
+        {fun && <div className='text-black w-9 font-bold relative left-[155px] md:left-[230px] top-7 md:top-12  overflow-hidden cursor-pointer text-xs' onClick={()=>{handleShow()}}>{text}</div>}
+        <input ref={password} type={type} placeholder='password' onChange={(e)=>{func()}} className='mb-4 ml-4 mt-1 md:mt-5 placeholder-gray-500 p-1 md:p-2 md:m-5 md:ml-1 w-10/12 md:w-full rounded-sm text-gray-800 font-semibold text-sm '></input>
+        {isSignIn && <button onClick={()=>{forgotfun()}} className='text-white'>Forgot Password?</button>}
         <p className='my-2 px-2 text-red-700 font-bold'> {errorMessage}</p>
-        <button    className ='bg-red-800 hover:bg-red-900 p-4 m-4 font-semibold text-white py-2 my-6 md:ml-1 w-10/12 md:w-full md:h-12 rounded-md ' onClick={handlevalidation}>{isSignIn?"SIGN IN":"sign up"}</button>
+        <button    className ='bg-red-800 hover:bg-red-900 p-4 m-4 font-semibold text-white py-2 my-6 md:ml-1 w-10/12 md:w-full md:h-12 rounded-md ' onClick={handlevalidation}>{isSignIn?"Sign In":"Sign Up"}</button>
 
         <div className='py-12 text-white'>{isSignIn?<div className='flex'><h5 className='pt-[2px] text-sm'>New to netflix?</h5><h3 onClick={()=>{handleSign()}} className=' text-white ml-2 cursor-pointer hover:underline'>SignUp Now</h3></div>:<div className='flex'><div className='text-sm mt-[-28px]'>Already a user?</div><div onClick={()=>{handleSign()}} className='ml-1 cursor-pointer hover:underline mt-[-30px]'>Sign In</div></div>}  </div>       
         
