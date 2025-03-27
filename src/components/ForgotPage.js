@@ -19,12 +19,15 @@ const ForgotPage = () => {
   });
     }
   return (
-    <div className='bg-black p-10'>
-  <form onSubmit={(e)=>{e.preventDefault()}} className='border border-white h-20 w-64 p-4'>
-  <input ref={email} placeholder='Enter your e-mail' className='w-full border border-black' ></input>
-  <button className='bg-red-700 text-white z-30' onClick={()=>{reset()}}> Reset Password</button>  
+    <div >
+    <div className='absolute flex justify-center items-center bg-black w-full h-dvh opacity-80'>
+  <form onSubmit={(e)=>{e.preventDefault()}} className='border border-white bg-black h-40 w-64 p-4 '>
+  <input ref={email} placeholder='Enter your e-mail' className=' bg-white w-full border text-black border-black mt-4 p-2' ></input>
+  <button className='bg-red-600 text-white z-30 mt-6 px-2 rounded-md' onClick={()=>{reset()}}> Reset</button>  
   </form>
 
+    </div>
+    <img src="https://assets.nflxext.com/ffe/siteui/vlv3/0cf2c109-3af1-4a9d-87d7-aecfac5fe881/web/IN-en-20250217-TRIFECTA-perspective_c3376e06-9aff-4657-aafb-91256a597b7c_large.jpg"></img>
     </div>
   )
 }
