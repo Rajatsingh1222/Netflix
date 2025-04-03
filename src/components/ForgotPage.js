@@ -20,9 +20,9 @@ const ForgotPage = () => {
     }
   return (
     <div >
-    <div className='absolute flex justify-center items-center bg-black w-full h-dvh opacity-80'>
-  <form onSubmit={(e)=>{e.preventDefault()}} className='border border-white bg-black h-40 w-64 p-4 '>
-  <input ref={email} placeholder='Enter your e-mail' className=' bg-white w-full border text-black border-black mt-4 p-2' ></input>
+    <div className='absolute flex justify-center items-center  w-full h-dvh '>
+  <form onSubmit={(e)=>{e.preventDefault()}} className=' bg-black opacity-85 h-40 w-64 p-4 '>
+  <input ref={email} placeholder='Enter your e-mail' className=' bg-white placeholder:text-black placeholder:font-semibold w-full border text-black border-black mt-4 p-2' ></input>
   <button className='bg-red-600 text-white z-30 mt-6 px-2 rounded-md' onClick={()=>{reset()}}> Reset</button>  
   </form>
 

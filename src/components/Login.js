@@ -111,7 +111,7 @@ dispatch(addUser({uid:uid,email:email,displayName:displayName}));
    <Header/>
     <div className='relative'> 
     <img className='h-[800px] md:w-screen' src="https://assets.nflxext.com/ffe/siteui/vlv3/0cf2c109-3af1-4a9d-87d7-aecfac5fe881/web/IN-en-20250217-TRIFECTA-perspective_c3376e06-9aff-4657-aafb-91256a597b7c_large.jpg" alt='logo'/>
-    <div className='h-[200px] -mt-1 bg-black'></div>
+    {/* <div className='h-[200px] -mt-1 bg-black'></div> */}
     <form onSubmit={(e)=>e.preventDefault()} className='pb-32 p-8 md:p-12 bg-black  absolute bg-opacity-85 top-[220px] left-[60px] md:left-[500px] w-8/12 md:w-3/12 h-[400px] md:h-[510px]'>
         {(!isSignIn)&&<input ref={name} type="text" placeholder='Name' className='mb-1 ml-4 mt-6 placeholder-gray-500 p-1 md:p-2 md:m-5 md:ml-1 w-10/12 md:w-full rounded-sm text-gray-800 font-semibold text-sm'></input>}
         
